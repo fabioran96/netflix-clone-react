@@ -1,17 +1,17 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import navbar from './navbar';
+import MyNavBar from './navbar'
 import Footer from './footer';
 import MovieGallery from './MovieGallery';
 
 const HomePage = () => {
   return (
     <div>
-      <NavBar />
+      <MyNavBar />
       <Container fluid className="px-4">
-        <MovieGallery title="Trending Now" searchQuery="trending" />
-        <MovieGallery title="Watch it Again" searchQuery="watch" />
-        <MovieGallery title="New Releases" searchQuery="new" />
+        <MovieGallery title="Marvel" searchQuery="Marvel" />
+        <MovieGallery title="Harry Potter" searchQuery="Harry Potter" />
+        <MovieGallery title="Star Wars" searchQuery="Star Wars" />
       </Container>
       <Footer />
     </div>

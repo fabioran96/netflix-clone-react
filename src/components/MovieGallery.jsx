@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Carousel, Image } from 'react-bootstrap';
+import './MovieGallery.css'
 
 class MovieGallery extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class MovieGallery extends Component {
       const response = await fetch(`http://www.omdbapi.com/?apikey=2c0caa62&s=${searchQuery}`);
       const data = await response.json();
       if (data.Response === "True") {
-        this.setState({ movies: data.Search, loading: false });
+        this.setState({ movies: data.Search.slice(0,6), loading: false });
       } else {
         this.setState({ error: data.Error, loading: false });
       }
@@ -37,16 +38,31 @@ class MovieGallery extends Component {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
+    const groupedMovies = [];
+    for (let i = 0; i < movies.length; i += 6) {
+      groupedMovies.push(movies.slice(i, i + 6));
+    }
+
     return (
       <div>
         <h4>{title}</h4>
-        <Row className="mb-4">
-          {movies.map(movie => (
-            <Col key={movie.imdbID} className="mb-2 text-center px-1" xs={6} sm={4} lg={2}>
-              <img className="img-fluid" src={movie.Poster} alt={movie.Title} />
-            </Col>
+        <Carousel>
+          {groupedMovies.map((group, idx) => (
+            <Carousel.Item key={idx}>
+              <div className="d-flex justify-content-center">
+                {group.map(movie => (
+                  <Image
+                    key={movie.imdbID}
+                    className="img-fluid mx-1"
+                    src={movie.Poster}
+                    alt={movie.Title}
+                    style={{ width: '150px', height: '225px' }} 
+                  />
+                ))}
+              </div>
+            </Carousel.Item>
           ))}
-        </Row>
+        </Carousel>
       </div>
     );
   }

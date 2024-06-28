@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
-const navbar = () => {
+const MyNavBar = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="black" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#">
           <img src="assets/logo.png" alt="logo" style={{ width: '100px', height: '55px' }} />
@@ -29,4 +29,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default MyNavBar;
