@@ -1,8 +1,8 @@
-import React from 'react';
 import { Container } from 'react-bootstrap';
 import MyNavBar from './navbar'
 import Footer from './footer';
 import MovieGallery from './MovieGallery';
+
 
 const HomePage = () => {
   return (
